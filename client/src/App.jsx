@@ -1,7 +1,9 @@
+import Header from "./components/header/Header";
+
 function App() {
     return (
         <div id="box">
-            <h1>Simple React Workshop</h1>
+            <Header />
         </div>
     )
 }
