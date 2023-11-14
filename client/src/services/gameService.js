@@ -6,10 +6,10 @@ export const create = async (gameData) => {
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify()
+        body: JSON.stringify(gameData)
     });
 
     const result = await response.json();
-    
+
     return result;
 }
