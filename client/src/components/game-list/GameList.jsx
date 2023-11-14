@@ -31,5 +31,5 @@ export default function GameList() {
 
             <h3 className="no-articles">No articles yet</h3>
         </section>
-    )
+    );
 }
