@@ -10,7 +10,7 @@ export const getAll = async () => {
 }
 
 export const create = async (gameData) => {
-    const response = await fetch(`${baseUrl}/games`, {
+    const response = await fetch(baseUrl, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
