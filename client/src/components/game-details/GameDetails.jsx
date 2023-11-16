@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import * as gameService from "../../services/gameService";
+import * as commentService from "../../services/commentService";
 
 export default function GameDetails() {
     const { gameId } = useParams();
@@ -11,6 +12,21 @@ export default function GameDetails() {
         gameService.getOne(gameId)
             .then(setGame);
     }, [gameId]);
+
+    const addCommentHandler = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+
+        const newComment = await commentService.create(
+            gameId,
+            formData.get('username'),
+            formData.get('comment'),
+        );
+
+        console.log(newComment);
+    };
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -46,10 +62,11 @@ export default function GameDetails() {
                     <a href="#" className="button">Delete</a>
                 </div> */}
             </div>
-            
+
             <article className="create-comment">
                 <label>Add new comment:</label>
-                <form className="form">
+                <form className="form" onSubmit={addCommentHandler}>
+                    <input type="text" name="username" placeholder="Username" />
                     <textarea name="comment" placeholder="Comment......"></textarea>
                     <input className="btn submit" type="submit" value="Add Comment" />
                 </form>
