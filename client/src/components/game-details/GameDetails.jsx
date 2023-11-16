@@ -30,6 +30,11 @@ export default function GameDetails() {
         );
 
         setComments(state => [...state, newComment]);
+
+        // Clean input
+        const el = document.querySelector('form');
+        el.children[0].value = '';
+        el.children[1].value = '';
     };
 
     return (
