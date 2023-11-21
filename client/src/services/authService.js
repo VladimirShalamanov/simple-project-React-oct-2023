@@ -7,11 +7,13 @@ export const login = async (email, password) => {
         email,
         password,
     });
-
+    
     return result;
 };
 
 export const register = (email, password) => request.post(`${baseUrl}/register`, {
     email,
     password,
+    // email and pass is minimum for the server
+    // you can add more - username, ...
 });
