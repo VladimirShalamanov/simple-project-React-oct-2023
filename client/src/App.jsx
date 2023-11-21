@@ -52,15 +52,16 @@ export default function App() {
                 <Header />
 
                 <Routes>
-                    <Route path='/header' element={<Header />} />
-                    <Route path='/games' element={<GameList />} />
-                    <Route path='/games/create' element={<GameCreate />} />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/register' element={<Register />} />
-                    <Route path='/games/:gameId' element={<GameDetails />} />
+                    <Route path={Path.Home} element={<Home />} />
+                    <Route path={Path.Header} element={<Header />} />
+                    <Route path={Path.GameList} element={<GameList />} />
+                    <Route path={Path.GameCreate} element={<GameCreate />} />
+                    <Route path={Path.GameDetails} element={<GameDetails />} />
+                    
+                    <Route path={Path.Register} element={<Register />} />
+                    <Route path={Path.Login} element={<Login />} />
+                    <Route path={Path.Logout} element={<Logout />} />
                 </Routes>
-
-                <Home />
             </div>
         </AuthContext.Provider>
     );
