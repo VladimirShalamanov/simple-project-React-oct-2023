@@ -9,7 +9,7 @@ const buildOptions = (data) => {
     }
 
     return options;
-}
+};
 
 const request = async (method, url, data) => {
     const response = await fetch(url, {
@@ -17,11 +17,15 @@ const request = async (method, url, data) => {
         ...buildOptions(data),
     });
 
-    // if (!response.ok) {
-    //     throw new Error('');
-    // }
+    if (response.status == 204) {
+        return {};
+    }
 
     const result = await response.json();
+
+    if (!response.ok) {
+        throw result;
+    }
 
     return result;
 };

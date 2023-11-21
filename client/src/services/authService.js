@@ -17,3 +17,5 @@ export const register = (email, password) => request.post(`${baseUrl}/register`,
     // email and pass is minimum for the server
     // you can add more - username, ...
 });
+
+export const logout = () => request.get(`${baseUrl}/logout`);
