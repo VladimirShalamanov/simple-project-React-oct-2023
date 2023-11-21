@@ -8,9 +8,7 @@ const LoginFormKeys = {
     Password: 'password',
 };
 
-export default function Login({
-    loginSubmitHandler,
-}) {
+export default function Login() {
     const { loginSubmitHandler } = useContext(authContext);
 
     const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
