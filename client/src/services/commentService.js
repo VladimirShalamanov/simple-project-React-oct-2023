@@ -10,7 +10,8 @@ export const getAll = async (gameId) => {
     // use query with '/data/'
 
     const query = new URLSearchParams({
-        where: `gameId="${gameId}"`
+        where: `gameId="${gameId}"`,
+        load: `owner=_ownerId:users`,
     });
 
     const result = await request.get(`${baseUrl}?${query.toString()}`);
@@ -22,10 +23,9 @@ export const getAll = async (gameId) => {
     return result;
 }
 
-export const create = async (gameId, username, text) => {
+export const create = async (gameId, text) => {
     const newCommet = await request.post(baseUrl, {
         gameId,
-        username,
         text,
     });
 
