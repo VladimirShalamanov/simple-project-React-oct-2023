@@ -1,5 +1,6 @@
 import { useContext } from "react";
 
+import Path from "../../paths";
 import useForm from "../../hooks/useForm";
 import authContext from "../../contexts/authContext";
 
@@ -45,7 +46,7 @@ export default function Login() {
 
                     <input type="submit" className="btn submit" value="Login" />
                     <p className="field">
-                        <span>If you don't have profile click <a href="#">here</a></span>
+                        <span>If you don't have profile click <a href={Path.Register}>here</a></span>
                     </p>
                 </div>
             </form>

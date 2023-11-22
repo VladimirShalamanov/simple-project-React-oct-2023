@@ -24,11 +24,15 @@ export default function App() {
 
         setAuth(result);
 
+        localStorage.setItem('accessToken', result.accessToken);
+
         navigate(Path.Home);
     };
 
     const registerSubmitHandler = async (values) => {
         if (values.password !== values['confirm-password']) {
+            alert('Passwords do not match!');
+
             navigate(Path.Register);
         } else {
 
@@ -36,12 +40,16 @@ export default function App() {
 
             setAuth(result);
 
+            localStorage.setItem('accessToken', result.accessToken);
+
             navigate(Path.Home);
         }
     };
 
     const logoutHandler = async () => {
         setAuth({});
+
+        localStorage.removeItem('accessToken');
     };
 
     const values = {
