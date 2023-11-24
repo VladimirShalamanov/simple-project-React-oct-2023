@@ -14,6 +14,8 @@ import Register from './components/register/Register';
 import Login from './components/login/Login';
 import Logout from './components/logout/Logout';
 
+// Do not use all advanced tools from this workshop (only some)
+
 export default function App() {
     return (
         <AuthProvider>
