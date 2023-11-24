@@ -9,7 +9,7 @@ import useForm from "../../hooks/useForm";
 
 export default function GameDetails() {
     const { gameId } = useParams();
-    const { email } = useContext(AuthContext);
+    const { userId, email } = useContext(AuthContext);
 
     const [game, setGame] = useState({});
     const [comments, dispatch] = useReducer(reducer, []);
@@ -76,11 +76,12 @@ export default function GameDetails() {
                     )}
                 </div>
 
-                {/* <!-- Edit/Delete buttons ( Only for creator of this game )  -->
-                <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
-                </div> */}
+                {userId === game._ownerId && (
+                    <div className="buttons">
+                        <a href="#" className="button">Edit</a>
+                        <a href="#" className="button">Delete</a>
+                    </div>
+                )}
             </div>
 
             <article className="create-comment">
