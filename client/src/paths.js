@@ -4,6 +4,7 @@ const Path = {
     GameList: '/games',
     GameCreate: '/games/create',
     GameDetails: '/games/:gameId',
+    GameEdit: '/games/:gameId/edit',
     
     Register: '/register',
     Login: '/login',
