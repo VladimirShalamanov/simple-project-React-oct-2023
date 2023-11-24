@@ -5,6 +5,7 @@ import * as gameService from "../../services/gameService";
 import * as commentService from "../../services/commentService";
 import AuthContext from "../../contexts/authContext";
 import reducer from "./commentReducer";
+import useForm from "../../hooks/useForm";
 
 export default function GameDetails() {
     const { gameId } = useParams();
@@ -26,14 +27,10 @@ export default function GameDetails() {
             });
     }, [gameId]);
 
-    const addCommentHandler = async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.currentTarget);
-
+    const addCommentHandler = async (values) => {
         const newComment = await commentService.create(
             gameId,
-            formData.get('comment'),
+            values.comment,
         );
 
         newComment.owner = { email };
@@ -42,11 +39,12 @@ export default function GameDetails() {
             type: 'ADD_COMMENT',
             payload: newComment,
         });
-
-        // Clean input
-        const el = document.querySelector('form');
-        el.children[0].value = '';
     };
+
+    const { values, onChange, onSubmit } = useForm(addCommentHandler, {
+        comment: '',
+    });
+
 
     return (
         <section id="game-details">
@@ -87,12 +85,12 @@ export default function GameDetails() {
 
             <article className="create-comment">
                 <label>Add new comment:</label>
-                <form className="form" onSubmit={addCommentHandler}>
-                    <textarea name="comment" placeholder="Comment......"></textarea>
+                <form className="form" onSubmit={onSubmit}>
+                    <textarea name="comment" value={values.comment} onChange={onChange} placeholder="Comment......"></textarea>
                     <input className="btn submit" type="submit" value="Add Comment" />
                 </form>
             </article>
 
         </section>
     );
-}
+};
