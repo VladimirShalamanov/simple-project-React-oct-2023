@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import * as gameService from "../../services/gameService";
-import { useEffect, useState } from "react";
+import { pathToUrl } from "../../utils/pathUtils";
 import Path from "../../paths";
 
 export default function GameEdit() {
@@ -27,12 +28,12 @@ export default function GameEdit() {
         e.preventDefault();
 
         const values = Object.fromEntries(new FormData(e.currentTarget));
-        console.log(values); 
+        console.log(values);
 
         try {
             await gameService.edit(gameId, values);
 
-            navigate(Path.GameList);
+            navigate(pathToUrl(Path.GameDetails, { gameId }));
         } catch (error) {
             // Error notification
             console.log(error);

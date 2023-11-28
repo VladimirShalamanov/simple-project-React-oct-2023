@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import * as gameService from "../../services/gameService";
+import Path from "../../paths";
 
 // for validations use Formik
 export default function GameCreate() {
@@ -14,7 +15,7 @@ export default function GameCreate() {
         try {
             await gameService.create(gameData);
 
-            navigate('/games');
+            navigate(Path.GameList);
         } catch (error) {
             console.log(error);
         }

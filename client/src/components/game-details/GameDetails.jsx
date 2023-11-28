@@ -1,12 +1,12 @@
-import { useContext, useEffect, useMemo, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import * as gameService from "../../services/gameService";
 import * as commentService from "../../services/commentService";
-import { pathToUrl } from "../../utils/pathUtils";
 import AuthContext from "../../contexts/authContext";
 import reducer from "./commentReducer";
 import useForm from "../../hooks/useForm";
+import { pathToUrl } from "../../utils/pathUtils";
 import Path from "../../paths";
 
 export default function GameDetails() {
@@ -55,12 +55,9 @@ export default function GameDetails() {
         }
     };
 
-    // Temp solution for form reinitialization
-    const initialsValues = useMemo(() => ({
+    const { values, onChange, onSubmit } = useForm(addCommentHandler, {
         comment: '',
-    }), []);
-
-    const { values, onChange, onSubmit } = useForm(addCommentHandler, initialsValues);
+    });
 
     return (
         <section id="game-details">
