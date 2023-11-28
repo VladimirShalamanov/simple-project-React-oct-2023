@@ -1,8 +1,20 @@
-import withAuth from "../../HOC/withAuth";
+import { useEffect, useState } from "react";
 
+import * as gameService from "../../services/gameService";
+import withAuth from "../../HOC/withAuth";
+import LatestGame from "./latest-game/LatestGame";
+
+// userId is for example HOC
 function Home({
     userId,
 }) {
+    const [latestGame, setLatestGame] = useState([]);
+
+    useEffect(() => {
+        gameService.getLatest()
+            .then(result => setLatestGame(result));
+    }, []);
+
     return (
         <section id="welcome-world">
 
@@ -15,45 +27,10 @@ function Home({
             <div id="home-page">
                 <h1>Latest Games</h1>
 
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="./images/CoverFire.png" />
-                    </div>
-                    <h3>Cover Fire</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">Details</a>
-                    </div>
-                </div>
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="./images/ZombieLang.png" />
-                    </div>
-                    <h3>Zombie Lang</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">Details</a>
-                    </div>
-                </div>
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="./images/MineCraft.png" />
-                    </div>
-                    <h3>MineCraft</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">Details</a>
-                    </div>
-                </div>
+                {latestGame.map(g => <LatestGame {...g} />)}
 
-                {/* <!-- Display paragraph: If there is no games  --> */}
-                <p className="no-articles">No games yet</p>
+                {!latestGame.length && <p className="no-articles">No games yet</p>}
+
                 <p>{userId}</p>
             </div>
         </section>
