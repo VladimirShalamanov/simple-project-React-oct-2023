@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as gameService from "../../services/gameService";
 
+// for validations use Formik
 export default function GameCreate() {
     const navigate = useNavigate();
 
