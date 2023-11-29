@@ -16,14 +16,22 @@ export const getOne = async (gameId) => {
 }
 
 export const getLatest = async () => {
+    // In server sort not work for now!
+    // -> discord - sortBy works without URLSearchParams
+    // sortBy: `_createdOn desc`,
+
     const query = new URLSearchParams({
-        // In server sort not work for now!
-        // sortBy: `_createdOn desc`,
         offset: 0,
         pageSize: 3,
     });
 
     const result = await request.get(`${baseUrl}?${query.toString()}`);
+
+    // const query = new URLSearchParams({
+    //     distinct: "_ownerId='35c62d76-8152-4626-8712-eeb96381bea8'",       
+    // });
+
+    // const result = await request.get(`${baseUrl}?${query.toString()}`);
 
     return result;
 }

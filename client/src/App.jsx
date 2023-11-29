@@ -22,7 +22,7 @@ import Logout from './components/logout/Logout';
 
 export default function App() {
     return (
-        <ErrorBoundary>
+        // <ErrorBoundary>
             <AuthProvider>
                 <div id="box">
                     <Header />
@@ -45,6 +45,6 @@ export default function App() {
                     </Routes>
                 </div>
             </AuthProvider>
-        </ErrorBoundary>
+        // </ErrorBoundary>
     );
 };

@@ -9,16 +9,16 @@ export const getAll = async (gameId) => {
     // use filter with '/jsonstore/'
     // use query with '/data/'
 
+    // const result = await request.get(baseUrl);
+
+    // return result.filter(c => c.gameId === gameId);
+
     const query = new URLSearchParams({
         where: `gameId="${gameId}"`,
         load: `owner=_ownerId:users`,
     });
 
     const result = await request.get(`${baseUrl}?${query.toString()}`);
-
-    // const result = await request.get(baseUrl);
-
-    // return result.filter(c => c.gameId === gameId);
 
     return result;
 }

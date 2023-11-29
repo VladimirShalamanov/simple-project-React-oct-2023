@@ -15,6 +15,7 @@ function Home({
             .then(result => setLatestGame(result));
     }, []);
 
+
     return (
         <section id="welcome-world">
 
@@ -27,7 +28,7 @@ function Home({
             <div id="home-page">
                 <h1>Latest Games</h1>
 
-                {latestGame.map(g => <LatestGame {...g} />)}
+                {latestGame.map(g => <LatestGame key={g._id} {...g} />)}
 
                 {!latestGame.length && <p className="no-articles">No games yet</p>}
 
