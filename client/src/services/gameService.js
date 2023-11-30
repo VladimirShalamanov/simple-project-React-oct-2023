@@ -16,22 +16,23 @@ export const getOne = async (gameId) => {
 }
 
 export const getLatest = async () => {
-    // In server sort not work for now!
-    // -> discord - sortBy works without URLSearchParams
-    // sortBy: `_createdOn desc`,
-
-    const query = new URLSearchParams({
-        offset: 0,
-        pageSize: 3,
-    });
-
-    const result = await request.get(`${baseUrl}?${query.toString()}`);
+    // Exaples with URL and URI, this not worked with 
+    // softuni practice server.
 
     // const query = new URLSearchParams({
-    //     distinct: "_ownerId='35c62d76-8152-4626-8712-eeb96381bea8'",       
+    //     sortBy: `_createdOn desc`,
+    //     offset: 0,
+    //     pageSize: 3,
     // });
 
-    // const result = await request.get(`${baseUrl}?${query.toString()}`);
+    // const query = encodeURIComponent('offset=0&pageSize=3');
+
+    // Use multiple search with '&' => param&param
+    // for Searching  => where=title LIKE "3"
+    // for Sorting    => sortBy=_createdOn%20desc
+    // for Pagination => offset=0&pageSize=3
+
+    const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc`);
 
     return result;
 }
