@@ -32,7 +32,8 @@ export const getLatest = async () => {
     // for Sorting    => sortBy=_createdOn%20desc
     // for Pagination => offset=0&pageSize=3
 
-    const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc`);
+    // const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc`);
+    const result = await request.get(`${baseUrl}?offset=0&pageSize=3`);
 
     return result;
 }
